@@ -127,16 +127,20 @@ if (!char) {
 
                     <div class="skill">
                         <h2>Skill: {char.skill.name}</h2>
+                        <h3>Cooldown: {char.skill.cooldown}</h3>
                         <p>{char.skill.desc}</p>
                     </div>
 
                     <div class="support-skill">
                         <h2>Support skill: {char.supportSkill.name}</h2>
+                        <h3>Cooldown: {char.supportSkill.cooldown}</h3>
                         <p>{char.supportSkill.desc}</p>
                     </div>
 
                     <div class="ultimate">
                         <h2>Ultimate: {char.ultimate.name}</h2>
+                        <h3>Cooldown: {char.ultimate.cooldown}</h3>
+                        <h3>Energy: {char.ultimate.energy}</h3>
                         <p>{char.ultimate.desc}</p>
                     </div>
 
@@ -365,10 +369,10 @@ if (!char) {
 
             upgrade2Output.innerHTML = `Upgrade: ${upgrade2}`;
             skillLevel1Output.innerHTML = `Skill level: ${skillLevel}`;
-            normalAttack.innerHTML = replaceParams(char.normalAtk.desc, char.normalAtk.params, upgrade2, skillLevel);
-            skill.innerHTML = replaceParams(char.skill.desc, char.skill.params, upgrade2, skillLevel);
-            supportSkill.innerHTML = replaceParams(char.supportSkill.desc, char.supportSkill.params, upgrade2, skillLevel);
-            ultimate.innerHTML = replaceParams(char.ultimate.desc, char.ultimate.params, upgrade2, skillLevel);
+            normalAttack.innerHTML = replaceSkillParams(char.normalAtk.desc, char.normalAtk.params, upgrade2, skillLevel);
+            skill.innerHTML = replaceSkillParams(char.skill.desc, char.skill.params, upgrade2, skillLevel);
+            supportSkill.innerHTML = replaceSkillParams(char.supportSkill.desc, char.supportSkill.params, upgrade2, skillLevel);
+            ultimate.innerHTML = replaceSkillParams(char.ultimate.desc, char.ultimate.params, upgrade2, skillLevel);
             skillUpgradeCost.innerHTML = `
                 ${
                     skillLevel >= 10
@@ -380,7 +384,7 @@ if (!char) {
             `;
         }
 
-        function replaceParams(desc, params, upgrade, level) {
+        function replaceSkillParams(desc, params, upgrade, level) {
             let result = desc;
 
             params.forEach((paramSet, index) => {
