@@ -35,7 +35,7 @@ if (!char) {
 }
 ---
 
-<Layout title={char.name}>
+<Layout title={`${char.name} | stelladb`}>
     <div class="character-page" data-json={JSON.stringify(char)}>
         <div class="header">
             <h1>{char.name}</h1>
@@ -73,12 +73,12 @@ if (!char) {
                     <div class="details">
                         <div class="slider-container">
                             <div class="slider upgrade1">
-                                <p class="upgrade1-output">Upgrade: 0</p>
+                                <label class="upgrade1-output">Upgrade: 0</label>
                                 <input type="range" id="upgrade1" min="0" max="8" value="0" />
                             </div>
 
                             <div class="slider level">
-                                <p class="level-output">Level: 1</p>
+                                <label class="level-output">Level: 1</label>
                                 <input type="range" id="level" min="0" max="10" value="1" />
                             </div>
                         </div>
@@ -111,11 +111,11 @@ if (!char) {
                 <section id="skills" class="tab-panel" hidden>
                     <div class="slider-container">
                         <div class="slider upgrade2">
-                            <p class="upgrade2-output">Upgrade: 0</p>
+                            <label class="upgrade2-output">Upgrade: 0</label>
                             <input type="range" id="upgrade2" min="0" max="8" value="0" />
                         </div>
                         <div class="slider skill-level1">
-                            <p class="skill-level1-output">Skill level: 1</p>
+                            <label class="skill-level1-output">Skill level: 1</label>
                             <input type="range" id="skill-level1" min="1" max="13" value="1" />
                         </div>
                     </div>
@@ -162,11 +162,11 @@ if (!char) {
                 <section id="potentials" class="tab-panel" hidden>
                     <div class="slider-container">
                         <div class="slider potential-level">
-                            <p class="potential-level-output">Potential level: 1</p>
+                            <label class="potential-level-output">Potential level: 1</label>
                             <input type="range" id="potential-level" min="1" max="9" value="1" />
                         </div>
                         <div class="slider skill-level2">
-                            <p class="skill-level2-output">Skill level: 1</p>
+                            <label class="skill-level2-output">Skill level: 1</label>
                             <input type="range" id="skill-level2" min="1" max="13" value="1" />
                         </div>
                     </div>
@@ -549,7 +549,7 @@ if (!char) {
             width: 100%;
         }
 
-        .slider p {
+        .slider label {
             width: 13ch;
         }
 

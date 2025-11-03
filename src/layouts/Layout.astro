@@ -11,13 +11,19 @@ const { title } = Astro.props;
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>{title}</title>
-        <meta name="google-site-verification" content="QnPzHT-3k8oi0acqMvSozJjSGyAgimpbAop5WpEQ_Oc" />
         <link rel="preload" href="/font.woff2" as="font" type="font/woff2" crossorigin />
+        <meta name="google-site-verification" content="QnPzHT-3k8oi0acqMvSozJjSGyAgimpbAop5WpEQ_Oc" />
+        <title>{title}</title>
+        <meta name="description" content="the worst stella sora database" />
+        <meta name="theme-color" content="#00a9ff" />
+        <meta property="og:site_name" content="stelladb.pages.dev" />
+        <link rel="canonical" href={Astro.url.href} />
+        <meta property="og:image" content="https://stelladb.pages.dev/nazuna.png" />
+        <link rel="sitemap" href="/sitemap-index.xml" />
     </head>
     <body>
         <nav>
-            <a href="/" class="logo">the worst stella sora database</a>
+            <a href="/" class="logo">stelladb</a>
             <div class="navlinks">
                 <a href="/character">Character</a>
                 <a href="/disc">Disc</a>
