@@ -1,0 +1,35 @@
+---
+// @ts-nocheck
+import Layout from '../layouts/Layout.astro';
+
+import Card from '../components/Card.astro';
+
+const DATA_URL = 'https://raw.githubusercontent.com/AutumnVN/StellaSoraData/refs/heads/main/disc.json';
+
+const data = await fetch(DATA_URL).then((res) => res.json());
+
+const emoji = {
+    Aqua: '💧',
+    Ignis: '🔥',
+    Terra: '⛰️',
+    Ventus: '🌪️',
+    Lux: '☀️',
+    Umbra: '🌙',
+    None: '⬜',
+};
+---
+
+<Layout title="Disc List | stelladb">
+    <div class="grid">
+        {Object.entries(data).map(([id, disc]) => <Card href={`/disc/${id}`} name={disc.name} desc={`${disc.star}⭐ ${disc.element}${emoji[disc.element]}`} desc2={disc.tag.join(', ')} star={disc.star} />)}
+    </div>
+</Layout>
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+</style>
