@@ -70,41 +70,39 @@ if (!char) {
 
             <div class="right">
                 <section id="details" class="tab-panel">
-                    <div class="details">
-                        <div class="slider-container">
-                            <div class="slider upgrade1">
-                                <label class="upgrade1-output">Upgrade: 0</label>
-                                <input type="range" id="upgrade1" min="0" max="8" value="0" />
-                            </div>
-
-                            <div class="slider level">
-                                <label class="level-output">Level: 1</label>
-                                <input type="range" id="level" min="0" max="10" value="1" />
-                            </div>
+                    <div class="slider-container">
+                        <div class="slider upgrade1">
+                            <label class="upgrade1-output">Upgrade: 0</label>
+                            <input type="range" id="upgrade1" min="0" max="8" value="0" />
                         </div>
 
-                        <div class="stats">
-                            <h2>Stats</h2>
-                            <p>
-                                HP: {char.stat[0].hp}<br />
-                                ATK: {char.stat[0].atk}<br />
-                            </p>
-                            <p>other stats doesnt change, dont care</p>
+                        <div class="slider level">
+                            <label class="level-output">Level: 1</label>
+                            <input type="range" id="level" min="0" max="10" value="1" />
                         </div>
+                    </div>
 
-                        <div class="upgrade-cost">
-                            <h2>Next upgrade cost</h2>
-                            <p>
-                                {
-                                    Object.entries(char.upgrade[0]).map(([item, amount]) => (
-                                        <>
-                                            {item}: {amount}
-                                            <br />
-                                        </>
-                                    ))
-                                }
-                            </p>
-                        </div>
+                    <div class="stats">
+                        <h2>Stats</h2>
+                        <p>
+                            HP: {char.stat[0].hp}<br />
+                            ATK: {char.stat[0].atk}<br />
+                        </p>
+                        <p>other stats doesnt change, dont care</p>
+                    </div>
+
+                    <div class="upgrade-cost">
+                        <h2>Next upgrade cost</h2>
+                        <p>
+                            {
+                                Object.entries(char.upgrade[0]).map(([item, amount]) => (
+                                    <>
+                                        {item}: {amount}
+                                        <br />
+                                    </>
+                                ))
+                            }
+                        </p>
                     </div>
                 </section>
 

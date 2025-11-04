@@ -40,7 +40,8 @@ if (!disc) {
             <h1>{disc.name}</h1>
 
             <nav class="tabs">
-                <button data-tab="melody" class="tab active">Melody</button>
+                <button data-tab="details" class="tab active">Details</button>
+                <button data-tab="melody" class="tab">Melody</button>
                 {
                     disc.secondarySkill1 && (
                         <button data-tab="harmony" class="tab">
@@ -69,7 +70,31 @@ if (!disc) {
             </div>
 
             <div class="right">
-                <section id="melody" class="tab-panel">
+                <section id="details" class="tab-panel">
+                    <div class="slider-container">
+                        <div class="slider upgrade1">
+                            <label class="upgrade1-output">Upgrade: 0</label>
+                            <input type="range" id="upgrade1" min="0" max="8" value="0" />
+                        </div>
+
+                        <div class="slider level">
+                            <label class="level-output">Level: 1</label>
+                            <input type="range" id="level" min="0" max="10" value="1" />
+                        </div>
+                    </div>
+
+                    <div class="stats">
+                        <h2>Stats</h2>
+                        <p>i forgor</p>
+                    </div>
+
+                    <div class="upgrade-cost">
+                        <h2>Next upgrade cost</h2>
+                        <p>i also forgor</p>
+                    </div>
+                </section>
+
+                <section id="melody" class="tab-panel" hidden>
                     <div class="slider-container">
                         <div class="slider dupe">
                             <label class="dupe-output">Dupe: 0</label>
@@ -126,9 +151,9 @@ if (!disc) {
 
                 <section id="note" class="tab-panel" hidden>
                     <div class="slider-container">
-                        <div class="slider upgrade">
-                            <label class="upgrade-output">Upgrade: 0</label>
-                            <input type="range" id="upgrade" min="0" max="8" value="0" />
+                        <div class="slider upgrade2">
+                            <label class="upgrade2-output">Upgrade: 0</label>
+                            <input type="range" id="upgrade2" min="0" max="8" value="0" />
                         </div>
                     </div>
 
@@ -170,6 +195,29 @@ if (!disc) {
                 });
             }
         });
+
+        const upgrade1Input = document.querySelector('#upgrade1');
+        const upgrade1Output = document.querySelector('.upgrade1-output');
+        const levelInput = document.querySelector('#level');
+        const levelOutput = document.querySelector('.level-output');
+
+        let upgrade = 0;
+        let level = 1;
+
+        upgrade1Input.addEventListener('input', onDetailsInput);
+        levelInput.addEventListener('input', onDetailsInput);
+        onDetailsInput();
+
+        function onDetailsInput() {
+            upgrade = +upgrade1Input.value;
+            level = +upgrade1Input.value * 10 + +levelInput.value;
+
+            if (level < 1) level = 1;
+            if (level > 90) level = 90;
+
+            upgrade1Output.innerHTML = `Upgrade: ${upgrade}`;
+            levelOutput.innerHTML = `Level: ${level}`;
+        }
 
         const dupeInput = document.querySelector('#dupe');
         const dupeOutput = document.querySelector('.dupe-output');
@@ -270,18 +318,18 @@ if (!disc) {
             }
         }
 
-        const upgradeInput = document.querySelector('#upgrade');
-        const upgradeOutput = document.querySelector('.upgrade-output');
+        const upgrade2Input = document.querySelector('#upgrade2');
+        const upgrade2Output = document.querySelector('.upgrade2-output');
         const note = document.querySelector('.note p');
 
-        let upgrade = 0;
+        let upgrade2 = 0;
 
-        upgradeInput.addEventListener('input', onUpgradeInput);
-        onUpgradeInput();
+        upgrade2Input.addEventListener('input', onSupportNoteInput);
+        onSupportNoteInput();
 
-        function onUpgradeInput() {
-            upgrade = +upgradeInput.value;
-            upgradeOutput.innerHTML = `Upgrade: ${upgrade}`;
+        function onSupportNoteInput() {
+            upgrade = +upgrade2Input.value;
+            upgrade2Output.innerHTML = `Upgrade: ${upgrade}`;
 
             note.innerHTML = Object.entries(disc.supportNote[upgrade])
                 .map(([note, amount]) => `${note}: ${amount}`)
