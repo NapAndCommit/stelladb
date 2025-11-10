@@ -1,0 +1,168 @@
+---
+// @ts-nocheck
+import Layout from '../layouts/Layout.astro';
+
+const DATA_URL = 'https://raw.githubusercontent.com/AutumnVN/StellaSoraData/refs/heads/main/emblem.json';
+
+const data = await fetch(DATA_URL).then((res) => res.json());
+---
+
+<Layout title="Emblem | stelladb">
+    <div class="emblem-page">
+        <div class="header">
+            <h1>Emblem</h1>
+
+            <nav class="tabs">
+                <button data-tab="lv70" class="tab active">Lv70</button>
+                <button data-tab="lv80" class="tab">Lv80</button>
+                <button data-tab="lv90" class="tab">Lv90</button>
+            </nav>
+        </div>
+
+        <div class="content">
+            <section id="lv70" class="tab-panel">
+                <p>yes, chance to get pen is rigged</p>
+                <h2>Normal Attributes</h2>
+                {
+                    data.lv70.attrGroup.map((group) => (
+                        <div class="attr-group">
+                            <h3>Weight: {group.weight}</h3>
+                            {group.attr.map((attr) => (
+                                <p>{attr}</p>
+                            ))}
+                        </div>
+                    ))
+                }
+            </section>
+
+            <section id="lv80" class="tab-panel" hidden>
+                <p>yes, chance to get pen is rigged</p>
+                <div class="unique-attr-group">
+                    <h2>Unique Attributes</h2>
+                    <h3>Weight: {JSON.stringify(data.lv80.uniqueAttrGroup.uniqueAttrNumWeight)}</h3>
+                    <p>whatever the fucc that weight means idk 😭</p>
+                    <br />
+                    {data.lv80.uniqueAttrGroup.attr.map((attr) => <p>{attr}</p>)}
+                </div>
+                <h2>Normal Attributes</h2>
+                {
+                    data.lv80.attrGroup.map((group) => (
+                        <div class="attr-group">
+                            <h3>Weight: {group.weight}</h3>
+                            {group.attr.map((attr) => (
+                                <p>{attr}</p>
+                            ))}
+                        </div>
+                    ))
+                }
+            </section>
+
+            <section id="lv90" class="tab-panel" hidden>
+                <p>yes, there is no pen here</p>
+                <div class="unique-attr-group">
+                    <h2>Unique Attributes</h2>
+                    <h3>Weight: {JSON.stringify(data.lv90.uniqueAttrGroup.uniqueAttrNumWeight)}</h3>
+                    <p>whatever the fucc that weight means idk 😭</p>
+                    <br />
+                    {data.lv90.uniqueAttrGroup.attr.map((attr) => <p>{attr}</p>)}
+                </div>
+                <h2>Normal Attributes</h2>
+                {
+                    data.lv90.attrGroup.map((group) => (
+                        <div class="attr-group">
+                            <h3>Weight: {group.weight}</h3>
+                            {group.attr.map((attr) => (
+                                <p>{attr}</p>
+                            ))}
+                        </div>
+                    ))
+                }
+            </section>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    // @ts-nocheck
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    document.addEventListener('click', (e) => {
+        const tab = e.target.closest('.tab');
+        if (tab) {
+            tabs.forEach((t) => {
+                const selected = t === tab;
+                t.classList.toggle('active', selected);
+            });
+
+            panels.forEach((p) => {
+                p.hidden = p.id !== tab.dataset.tab;
+            });
+        }
+    });
+</script>
+
+<style>
+    .emblem-page {
+        padding: 0 1rem;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        padding: 0 1rem;
+        max-width: 1000px;
+        height: 64px;
+    }
+
+    h1 {
+        margin: 0 1rem 0 0;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .tabs {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: auto;
+    }
+
+    .tab {
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        background: var(--bg);
+        padding: 0.5rem 0.75rem;
+        color: var(--muted);
+        font-size: 1rem;
+    }
+
+    .tab.active {
+        color: var(--text);
+        font-weight: 700;
+    }
+
+    .content {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    div[class] > p {
+        margin-left: 1rem;
+    }
+
+    h2 {
+        margin: 1.5rem 0 0.75rem 0;
+    }
+
+    h3 {
+        margin: 1rem 0 0.5rem 0;
+    }
+
+    p {
+        margin: 0.25rem 0;
+    }
+</style>
