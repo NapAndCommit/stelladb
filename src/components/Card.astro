@@ -5,30 +5,63 @@ interface Props {
     desc: string;
     desc2?: string;
     star: number;
+    image: string;
+    isChar?: boolean;
 }
 
-const { href, name, desc, desc2, star } = Astro.props;
+const { href, name, desc, desc2, star, image, isChar } = Astro.props;
 ---
 
-<a href={href} class="card" style={`background: var(--bg${star});`}>
-    <h2>{name}</h2>
-    <p>{desc}</p>
-    {desc2 && <p>{desc2}</p>}
+<a href={href} class="card" style={`border: var(--bg${star}) 5px solid;`}>
+    <div class=`image ${isChar ? 'isChar' : ''}` style={`background-image: url(${image});`} role="img" aria-label={name}></div>
+    <div class="text">
+        <h2>{name}</h2>
+        <p>{desc}</p>
+        {desc2 && <p>{desc2}</p>}
+    </div>
 </a>
 
 <style>
     .card {
+        display: block;
         border-radius: 5px;
         background: var(--bg2);
+        padding: 0;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        position: relative;
+        text-decoration: none;
+        color: var(--text);
+    }
+
+    .image {
+        position: absolute;
+        inset: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .isChar {
+        background-position: top;
+        inset: -12px;
+    }
+
+    .text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
         padding: 0.5rem;
+        background: #0006;
     }
 
     .card h2 {
         margin: 0;
-        color: var(--primary);
+        font-size: 1.25rem;
     }
 
     .card p {
-        margin: 0.5rem 0 0 0;
+        margin: 0.25rem 0 0 0;
     }
 </style>
