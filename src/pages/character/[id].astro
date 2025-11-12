@@ -12,11 +12,13 @@ export async function getStaticPaths() {
 }
 
 const DATA_URL = 'https://raw.githubusercontent.com/AutumnVN/StellaSoraData/refs/heads/main/character.json';
+const ITEM_URL = 'https://raw.githubusercontent.com/AutumnVN/StellaSoraData/refs/heads/main/item.json';
 
 const { params, request } = Astro;
 const id = params.id;
 
 const data = await fetch(DATA_URL).then((res) => res.json());
+const itemId = await fetch(ITEM_URL).then((res) => res.json());
 const char = data[id];
 
 const emoji = {
@@ -36,7 +38,7 @@ if (!char) {
 ---
 
 <Layout title={`${char.name} | stelladb`}>
-    <div class="character-page" data-json={JSON.stringify(char)}>
+    <div class="character-page" data-json={JSON.stringify(char)} data-item={JSON.stringify(itemId)}>
         <div class="header">
             <h1>{char.name}</h1>
 
@@ -93,6 +95,7 @@ if (!char) {
 
                     <div class="upgrade-cost">
                         <h2>Next upgrade cost</h2>
+                        <div class="item-image"></div>
                         <p>
                             {
                                 Object.entries(char.upgrade[0]).map(([item, amount]) => (
@@ -148,6 +151,7 @@ if (!char) {
 
                     <div class="skill-upgrade-cost">
                         <h2>Next skill upgrade cost</h2>
+                        <div class="item-image"></div>
                         <p>
                             {
                                 Object.entries(char.skillUpgrade[0]).map(([item, amount]) => (
@@ -248,6 +252,7 @@ if (!char) {
                 <section id="gifts" class="tab-panel" hidden>
                     <div class="love-gift">
                         <h2>Love gift</h2>
+                        <div class="item-image"></div>
                         <p>
                             {
                                 char.loveGift.map((gift) => (
@@ -262,6 +267,7 @@ if (!char) {
 
                     <div class="hate-gift">
                         <h2>Hate gift</h2>
+                        <div class="item-image"></div>
                         <p>
                             {
                                 char.hateGift.map((gift) => (
@@ -284,6 +290,7 @@ if (!char) {
                         char.date.map((date) => (
                             <div class="date">
                                 <h2>{date.name}</h2>
+                                <div class="item-image" />
                                 <p>{date.clue}</p>
                                 <p>Choice: {date.secondChoice}</p>
                             </div>
@@ -297,6 +304,7 @@ if (!char) {
     <script>
         // @ts-nocheck
         const char = JSON.parse(document.querySelector('.character-page').dataset.json);
+        const itemId = JSON.parse(document.querySelector('.character-page').dataset.item);
 
         const tabs = document.querySelectorAll('.tab');
         const panels = document.querySelectorAll('.tab-panel');
@@ -321,6 +329,7 @@ if (!char) {
         const levelOutput = document.querySelector('.level-output');
         const stats = document.querySelector('.stats p');
         const upgradeCost = document.querySelector('.upgrade-cost p');
+        const upgradeCostItemImage = document.querySelector('.upgrade-cost .item-image');
 
         let upgrade1;
         let level;
@@ -351,6 +360,16 @@ if (!char) {
                               .join('')
                 }
             `;
+            upgradeCostItemImage.innerHTML = `${
+                upgrade1 >= 8
+                    ? ''
+                    : Object.entries(char.upgrade[upgrade1])
+                          .map(([item, amount]) => {
+                              const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[item]}.png`;
+                              return `<img src="${imageUrl}" alt="${item}" title="${item}" width="64" height="64" />`;
+                          })
+                          .join('')
+            }`;
         }
 
         const upgrade2Input = document.querySelector('#upgrade2');
@@ -362,6 +381,7 @@ if (!char) {
         const supportSkill = document.querySelector('.support-skill p');
         const ultimate = document.querySelector('.ultimate p');
         const skillUpgradeCost = document.querySelector('.skill-upgrade-cost p');
+        const skillUpgradeItemImage = document.querySelector('.skill-upgrade-cost .item-image');
 
         let upgrade2;
         let skillLevel;
@@ -392,6 +412,16 @@ if (!char) {
                               .join('')
                 }
             `;
+            skillUpgradeItemImage.innerHTML = `${
+                skillLevel >= 10
+                    ? ''
+                    : Object.entries(char.skillUpgrade[skillLevel - 1])
+                          .map(([item, amount]) => {
+                              const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[item]}.png`;
+                              return `<img src="${imageUrl}" alt="${item}" title="${item}" width="64" height="64" />`;
+                          })
+                          .join('')
+            }`;
         }
 
         function replaceSkillParams(desc, params, upgrade, level) {
@@ -486,6 +516,29 @@ if (!char) {
 
             e.innerHTML = result;
         });
+
+        const loveGiftItemImage = document.querySelector('.love-gift .item-image');
+        const hateGiftItemImage = document.querySelector('.hate-gift .item-image');
+
+        loveGiftItemImage.innerHTML = `${char.loveGift
+            .map((gift) => {
+                const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[gift]}.png`;
+                return `<img src="${imageUrl}" alt="${gift}" title="${gift}" width="64" height="64" />`;
+            })
+            .join('')}`;
+        hateGiftItemImage.innerHTML = `${char.hateGift
+            .map((gift) => {
+                const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[gift]}.png`;
+                return `<img src="${imageUrl}" alt="${gift}" title="${gift}" width="64" height="64" />`;
+            })
+            .join('')}`;
+
+        const dateItemImages = document.querySelectorAll('.date .item-image');
+        dateItemImages.forEach((e, i) => {
+            const date = char.date[i];
+            const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/datingeventcg/DatingSPCG_${date.id}.png`;
+            e.innerHTML = `<img src="${imageUrl}" alt="${date.clueItem}" title="${date.clueItem}" width="128" height="128" />`;
+        });
     </script>
 
     <style>
@@ -574,7 +627,8 @@ if (!char) {
             margin-left: 1rem;
         }
 
-        div[class] > p {
+        div[class] > p,
+        div[class] > .item-image {
             margin-left: 1rem;
         }
 
