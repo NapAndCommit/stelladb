@@ -89,8 +89,8 @@ if (!char) {
                     <div class="stats">
                         <h2>Stats</h2>
                         <p>
-                            HP: {char.stat[0].hp}<br />
-                            ATK: {char.stat[0].atk}<br />
+                            HP: {char.stat[0].hp.toLocaleString()}<br />
+                            ATK: {char.stat[0].atk.toLocaleString()}<br />
                         </p>
                         <p>other stats doesnt change, dont care</p>
                     </div>
@@ -102,7 +102,7 @@ if (!char) {
                             {
                                 Object.entries(char.upgrade[0]).map(([item, amount]) => (
                                     <>
-                                        {item}: {amount}
+                                        {item}: {amount.toLocaleString()}
                                         <br />
                                     </>
                                 ))
@@ -170,7 +170,7 @@ if (!char) {
                             {
                                 Object.entries(char.skillUpgrade[0]).map(([item, amount]) => (
                                     <>
-                                        {item}: {amount}
+                                        {item}: {amount.toLocaleString()}
                                         <br />
                                     </>
                                 ))
@@ -345,15 +345,15 @@ if (!char) {
             upgrade1Output.innerHTML = `Upgrade: ${upgrade1}`;
             levelOutput.innerHTML = `Level: ${level}`;
             stats.innerHTML = `
-                HP: ${char.stat[level + upgrade1 - 1].hp}<br />
-                ATK: ${char.stat[level + upgrade1 - 1].atk}<br />
+                HP: ${char.stat[level + upgrade1 - 1].hp.toLocaleString()}<br />
+                ATK: ${char.stat[level + upgrade1 - 1].atk.toLocaleString()}<br />
             `;
             upgradeCost.innerHTML = `
                 ${
                     upgrade1 >= 8
                         ? 'Max upgrade reached<br />'
                         : Object.entries(char.upgrade[upgrade1])
-                              .map(([item, amount]) => `${item}: ${amount}<br />`)
+                              .map(([item, amount]) => `${item}: ${amount.toLocaleString()}<br />`)
                               .join('')
                 }
             `;
@@ -405,7 +405,7 @@ if (!char) {
                     skillLevel >= 10
                         ? 'Max skill level reached<br />'
                         : Object.entries(char.skillUpgrade[skillLevel - 1])
-                              .map(([item, amount]) => `${item}: ${amount}<br />`)
+                              .map(([item, amount]) => `${item}: ${amount.toLocaleString()}<br />`)
                               .join('')
                 }
             `;

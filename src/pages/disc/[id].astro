@@ -98,7 +98,7 @@ if (!disc) {
                             {
                                 Object.entries(disc.stat[0]).map(([stat, value]) => (
                                     <>
-                                        {stat}: {value}
+                                        {stat}: {value.toLocaleString()}
                                         <br />
                                     </>
                                 ))
@@ -113,7 +113,7 @@ if (!disc) {
                             {
                                 Object.entries(disc.upgrade[0]).map(([item, amount]) => (
                                     <>
-                                        {item}: {amount}
+                                        {item}: {amount.toLocaleString()}
                                         <br />
                                     </>
                                 ))
@@ -245,14 +245,14 @@ if (!disc) {
             const stat = disc.stat[level + upgrade1 - 1];
 
             stats.innerHTML = Object.entries(stat)
-                .map(([stat, value]) => `${stat}: ${stat === 'ATK' && dupe1 > 1 ? value + disc.dupe[dupe1 - 2].ATK : value}`)
+                .map(([stat, value]) => `${stat}: ${(stat === 'ATK' && dupe1 > 1 ? value + disc.dupe[dupe1 - 2].ATK : value).toLocaleString()}`)
                 .join('<br />');
             upgradeCost.innerHTML = `
                 ${
                     upgrade1 >= 8
                         ? 'Max upgrade reached<br />'
                         : Object.entries(disc.upgrade[upgrade1])
-                              .map(([item, amount]) => `${item}: ${amount}<br />`)
+                              .map(([item, amount]) => `${item}: ${amount.toLocaleString()}<br />`)
                               .join('')
                 }
             `;
