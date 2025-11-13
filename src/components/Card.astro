@@ -4,7 +4,7 @@ interface Props {
     name: string;
     desc: string;
     desc2?: string;
-    star: number;
+    star?: number;
     image: string;
     inset?: number;
 }
@@ -12,43 +12,69 @@ interface Props {
 const { href, name, desc, desc2, star, image, inset = 0 } = Astro.props;
 ---
 
-<a href={href} class="card" style={`border: var(--bg${star}) 5px solid;`}>
-    <div class=`image` style={`background-image: url(${image}); inset: ${inset}px`} role="img" aria-label={name}></div>
-    <div class="text">
-        <h2>{name}</h2>
-        <p>{desc}</p>
-        {desc2 && <p>{desc2}</p>}
-    </div>
-</a>
+<div class={`card-border ${star ? `star${star}` : ''}`}>
+    <a href={href} class="card">
+        <div class=`image` style={`background-image: url(${image}); inset: ${inset}px`} role="img" aria-label={name}></div>
+        <div class="text">
+            <h2>{name}</h2>
+            <p>{desc}</p>
+            {desc2 && <p>{desc2}</p>}
+        </div>
+    </a>
+</div>
 
 <style>
     .card {
         display: block;
-        border-radius: 5px;
+        position: relative;
         background: var(--bg2);
         padding: 0;
         aspect-ratio: 1 / 1;
         overflow: hidden;
-        position: relative;
-        text-decoration: none;
         color: var(--text);
+        text-decoration: none;
+    }
+
+    .card-border:not([class*='star']) .card {
+        border-radius: 5px;
+    }
+
+    .card-border[class*='star'] {
+        mask:
+            linear-gradient(transparent 0 0) content-box,
+            linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    .star3 {
+        background: linear-gradient(135deg, #8ce, #dff);
+    }
+
+    .star4 {
+        background: linear-gradient(135deg, #fd5, #efc);
+    }
+
+    .star5 {
+        background: linear-gradient(135deg, #d8e, #7ff);
     }
 
     .image {
         position: absolute;
         inset: 0;
         background-position: top;
-        background-repeat: no-repeat;
         background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .text {
         position: absolute;
-        left: 0;
         right: 0;
         bottom: 0;
-        padding: 0.5rem;
+        left: 0;
         background: #0006;
+        padding: 0.5rem;
     }
 
     .card h2 {
