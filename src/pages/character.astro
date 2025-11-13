@@ -22,10 +22,23 @@ const emoji = {
 ---
 
 <Layout title="Character | stelladb">
-    <SearchableGrid placeholder="Search characters by id, name, element, or tag..." noResultsText="No characters found.">
+    <SearchableGrid placeholder="Search characters by id, name, element, tag, skill, or potential..." noResultsText="No characters found.">
         {
             Object.entries(data).map(([id, char]) => (
-                <div class="card-item" data-id={id} data-name={char.name} data-element={char.element} data-class={char.class} data-attacktype={char.attackType} data-tag={char.tag.join(' ')}>
+                <div
+                    class="card-item"
+                    data-id={id}
+                    data-name={char.name}
+                    data-element={char.element}
+                    data-class={char.class}
+                    data-attacktype={char.attackType}
+                    data-tag={char.tag.join(' ')}
+                    data-skill={`${char.normalAtk.name} ${char.skill.name} ${char.supportSkill.name} ${char.ultimate.name}`}
+                    data-potential={Object.values(char.potential)
+                        .flat()
+                        .map((pot) => pot.name)
+                        .join(' ')}
+                >
                     <Card href={`/character/${id}`} name={char.name} desc={`${char.star}⭐ ${char.element}${emoji[char.element]} ${char.class}${emoji[char.attackType]}`} star={char.star} image={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/head/head_${id}01_XL.png`} inset={-12} />
                 </div>
             ))

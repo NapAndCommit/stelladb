@@ -21,10 +21,10 @@ const emoji = {
 ---
 
 <Layout title="Disc | stelladb">
-    <SearchableGrid placeholder="Search discs by id, name, element, or tag..." noResultsText="No discs found.">
+    <SearchableGrid placeholder="Search discs by id, name, element, tag, or skill..." noResultsText="No discs found.">
         {
             Object.entries(data).map(([id, disc]) => (
-                <div class="card-item" data-id={id} data-name={disc.name} data-element={disc.element} data-tag={disc.tag.join(' ')}>
+                <div class="card-item" data-id={id} data-name={disc.name} data-element={disc.element} data-tag={disc.tag.join(' ')} data-skill={`${disc.mainSkill.name} ${disc.secondarySkill1?.name || ''} ${disc.secondarySkill1?.name || ''}`}>
                     <Card href={`/disc/${id}`} name={disc.name} desc={`${disc.star}⭐ ${disc.element}${emoji[disc.element]}`} desc2={disc.tag.join(', ')} star={disc.star} image={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/outfit/outfit_${id.replace(/^.{2}/, '')}.png`} />
                 </div>
             ))
