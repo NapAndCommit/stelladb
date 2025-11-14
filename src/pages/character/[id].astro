@@ -22,6 +22,8 @@ const data = await fetch(DATA_URL).then((res) => res.json());
 const itemId = await fetch(ITEM_URL).then((res) => res.json());
 const char = data[id];
 
+char.tag.shift();
+
 const emoji = {
     Aqua: '💧',
     Ignis: '🔥',
@@ -38,7 +40,7 @@ if (!char) {
 }
 ---
 
-<Layout title={`${char.name} | stelladb`}>
+<Layout title={`${char.name} | stelladb`} image={`https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/head/head_${id}01_XL.png`} description={`${char.star}⭐ ${char.element}${emoji[char.element]} ${char.class}${emoji[char.attackType]} ${char.tag.join(' ')}`}>
     <div class="character-page" data-json={JSON.stringify(char)} data-item={JSON.stringify(itemId)}>
         <div class="header">
             <h1>{char.name}</h1>
@@ -61,13 +63,12 @@ if (!char) {
                     {char.element}{emoji[char.element]}<br />
                     {char.class}{emoji[char.attackType]}<br />
                     {
-                        char.tag.shift() &&
-                            char.tag.map((tag) => (
-                                <>
-                                    {tag}
-                                    <br />
-                                </>
-                            ))
+                        char.tag.map((tag) => (
+                            <>
+                                {tag}
+                                <br />
+                            </>
+                        ))
                     }
                 </p>
             </div>
@@ -195,7 +196,7 @@ if (!char) {
                     {
                         char.potential.mainCore.map((pot) => (
                             <div class="potential-wrapper">
-                                <div class="potential-image" style={`background: url('/${pot.rarity}.png') center/cover no-repeat;`}>
+                                <div class="potential-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/stelladb/refs/heads/main/public/${pot.rarity}.png') center/cover no-repeat;`}>
                                     <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/potential/${pot.icon}_A.png`} alt={pot.name} title={pot.name} width="96" height="96" />
                                 </div>
                                 <div class="potential" data-desc={JSON.stringify(pot.desc)} data-params={JSON.stringify(pot.params)}>
@@ -210,7 +211,7 @@ if (!char) {
                     {
                         char.potential.mainNormal.map((pot) => (
                             <div class="potential-wrapper">
-                                <div class="potential-image" style={`background: url('/${pot.rarity}.png') center/cover no-repeat;`}>
+                                <div class="potential-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/stelladb/refs/heads/main/public/${pot.rarity}.png') center/cover no-repeat;`}>
                                     <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/potential/${pot.icon}_A.png`} alt={pot.name} title={pot.name} width="96" height="96" />
                                 </div>
                                 <div class="potential" data-desc={JSON.stringify(pot.desc)} data-params={JSON.stringify(pot.params)}>
@@ -225,7 +226,7 @@ if (!char) {
                     {
                         char.potential.common.map((pot) => (
                             <div class="potential-wrapper">
-                                <div class="potential-image" style={`background: url('/${pot.rarity}.png') center/cover no-repeat;`}>
+                                <div class="potential-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/stelladb/refs/heads/main/public/${pot.rarity}.png') center/cover no-repeat;`}>
                                     <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/potential/${pot.icon}_A.png`} alt={pot.name} title={pot.name} width="96" height="96" />
                                 </div>
                                 <div class="potential" data-desc={JSON.stringify(pot.desc)} data-params={JSON.stringify(pot.params)}>
@@ -240,7 +241,7 @@ if (!char) {
                     {
                         char.potential.supportCore.map((pot) => (
                             <div class="potential-wrapper">
-                                <div class="potential-image" style={`background: url('/${pot.rarity}.png') center/cover no-repeat;`}>
+                                <div class="potential-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/stelladb/refs/heads/main/public/${pot.rarity}.png') center/cover no-repeat;`}>
                                     <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/potential/${pot.icon}_A.png`} alt={pot.name} title={pot.name} width="96" height="96" />
                                 </div>
                                 <div class="potential" data-desc={JSON.stringify(pot.desc)} data-params={JSON.stringify(pot.params)}>
@@ -255,7 +256,7 @@ if (!char) {
                     {
                         char.potential.supportNormal.map((pot) => (
                             <div class="potential-wrapper">
-                                <div class="potential-image" style={`background: url('/${pot.rarity}.png') center/cover no-repeat;`}>
+                                <div class="potential-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/stelladb/refs/heads/main/public/${pot.rarity}.png') center/cover no-repeat;`}>
                                     <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/potential/${pot.icon}_A.png`} alt={pot.name} title={pot.name} width="96" height="96" />
                                 </div>
                                 <div class="potential" data-desc={JSON.stringify(pot.desc)} data-params={JSON.stringify(pot.params)}>
