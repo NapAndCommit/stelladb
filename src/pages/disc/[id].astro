@@ -133,6 +133,7 @@ if (!disc) {
                     <div class="melody">
                         <h2>{disc.mainSkill.name}</h2>
                         <p>{disc.mainSkill.description}</p>
+                        {!disc.mainSkill.effectType.length ? null : <p>Effect type: {disc.mainSkill.effectType.join(', ')}</p>}
                     </div>
                 </section>
 
@@ -149,6 +150,7 @@ if (!disc) {
                             <div class="harmony1">
                                 <h2>{disc.secondarySkill1.name}</h2>
                                 <p>{disc.secondarySkill1.description}</p>
+                                {!disc.secondarySkill1.effectType.length ? null : <p>Effect type: {disc.secondarySkill1.effectType.join(', ')}</p>}
                                 <div class="item-image" />
                                 <p class="requirements">
                                     {Object.entries(disc.secondarySkill1.requirements[0]).map(([note, amount]) => (
@@ -164,6 +166,7 @@ if (!disc) {
                                 <div class="harmony2">
                                     <h2>{disc.secondarySkill2.name}</h2>
                                     <p>{disc.secondarySkill2.description}</p>
+                                    {!disc.secondarySkill2.effectType.length ? null : <p>Effect type: {disc.secondarySkill2.effectType.join(', ')}</p>}
                                     <div class="item-image" />
                                     <p class="requirements">
                                         {Object.entries(disc.secondarySkill2.requirements[0]).map(([note, amount]) => (

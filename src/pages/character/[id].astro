@@ -131,6 +131,7 @@ if (!char) {
                         </div>
                         <p>{char.normalAtk.desc}</p>
                         {!char.normalAtk.damageType.length ? null : <p>Damage type: {char.normalAtk.damageType.join(', ')}</p>}
+                        {!char.normalAtk.effectType.length ? null : <p>Effect type: {char.normalAtk.effectType.join(', ')}</p>}
                     </div>
 
                     <div class="skill">
@@ -141,6 +142,7 @@ if (!char) {
                         <h3>Cooldown: {char.skill.cooldown}</h3>
                         <p>{char.skill.desc}</p>
                         {!char.skill.damageType.length ? null : <p>Damage type: {char.skill.damageType.join(', ')}</p>}
+                        {!char.skill.effectType.length ? null : <p>Effect type: {char.skill.effectType.join(', ')}</p>}
                     </div>
 
                     <div class="support-skill">
@@ -151,6 +153,7 @@ if (!char) {
                         <h3>Cooldown: {char.supportSkill.cooldown}</h3>
                         <p>{char.supportSkill.desc}</p>
                         {!char.supportSkill.damageType.length ? null : <p>Damage type: {char.supportSkill.damageType.join(', ')}</p>}
+                        {!char.supportSkill.effectType.length ? null : <p>Effect type: {char.supportSkill.effectType.join(', ')}</p>}
                     </div>
 
                     <div class="ultimate">
@@ -162,6 +165,7 @@ if (!char) {
                         <h3>Energy: {char.ultimate.energy}</h3>
                         <p>{char.ultimate.desc}</p>
                         {!char.ultimate.damageType.length ? null : <p>Damage type: {char.ultimate.damageType.join(', ')}</p>}
+                        {!char.ultimate.effectType.length ? null : <p>Effect type: {char.ultimate.effectType.join(', ')}</p>}
                     </div>
 
                     <div class="skill-upgrade-cost">
@@ -203,6 +207,7 @@ if (!char) {
                                     <h3>{pot.name}</h3>
                                     <p>{pot.desc}</p>
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
+                                    {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                 </div>
                             </div>
                         ))
@@ -218,6 +223,7 @@ if (!char) {
                                     <h3>{pot.name}</h3>
                                     <p>{pot.desc}</p>
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
+                                    {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                 </div>
                             </div>
                         ))
@@ -233,6 +239,7 @@ if (!char) {
                                     <h3>{pot.name}</h3>
                                     <p>{pot.desc}</p>
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
+                                    {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                 </div>
                             </div>
                         ))
@@ -248,6 +255,7 @@ if (!char) {
                                     <h3>{pot.name}</h3>
                                     <p>{pot.desc}</p>
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
+                                    {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                 </div>
                             </div>
                         ))
@@ -263,6 +271,7 @@ if (!char) {
                                     <h3>{pot.name}</h3>
                                     <p>{pot.desc}</p>
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
+                                    {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                 </div>
                             </div>
                         ))
