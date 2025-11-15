@@ -132,7 +132,12 @@ if (!disc) {
                     </div>
 
                     <div class="melody">
-                        <h2>{disc.mainSkill.name}</h2>
+                        <div class="skill-header">
+                            <div class="skill-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/discskill/${disc.mainSkill.iconBg}.png') center/cover no-repeat;`}>
+                                <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/discskill/${disc.mainSkill.icon}.png`} alt={disc.mainSkill.name} title={disc.mainSkill.name} width="64" height="64" />
+                            </div>
+                            <h2>{disc.mainSkill.name}</h2>
+                        </div>
                         <p>{disc.mainSkill.description}</p>
                         {!disc.mainSkill.effectType.length ? null : <p>Effect type: {disc.mainSkill.effectType.join(', ')}</p>}
                     </div>
@@ -149,7 +154,12 @@ if (!disc) {
                             </div>
 
                             <div class="harmony1">
-                                <h2>{disc.secondarySkill1.name}</h2>
+                                <div class="skill-header">
+                                    <div class="skill-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/discskill/${disc.secondarySkill1.iconBg}.png') center/cover no-repeat;`}>
+                                        <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/discskill/${disc.secondarySkill1.icon}.png`} alt={disc.secondarySkill1.name} title={disc.secondarySkill1.name} width="64" height="64" />
+                                    </div>
+                                    <h2>{disc.secondarySkill1.name}</h2>
+                                </div>
                                 <p>{disc.secondarySkill1.description}</p>
                                 {!disc.secondarySkill1.effectType.length ? null : <p>Effect type: {disc.secondarySkill1.effectType.join(', ')}</p>}
                                 <div class="item-image" />
@@ -165,7 +175,12 @@ if (!disc) {
 
                             {disc.secondarySkill2 && (
                                 <div class="harmony2">
-                                    <h2>{disc.secondarySkill2.name}</h2>
+                                    <div class="skill-header">
+                                        <div class="skill-image" style={`background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/discskill/${disc.secondarySkill2.iconBg}.png') center/cover no-repeat;`}>
+                                            <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/discskill/${disc.secondarySkill2.icon}.png`} alt={disc.secondarySkill2.name} title={disc.secondarySkill2.name} width="64" height="64" />
+                                        </div>
+                                        <h2>{disc.secondarySkill2.name}</h2>
+                                    </div>
                                     <p>{disc.secondarySkill2.description}</p>
                                     {!disc.secondarySkill2.effectType.length ? null : <p>Effect type: {disc.secondarySkill2.effectType.join(', ')}</p>}
                                     <div class="item-image" />
@@ -454,9 +469,9 @@ if (!disc) {
             display: inline-block;
             margin: 0.5rem;
             padding: 0.5rem;
-            text-decoration: none;
             color: var(--accent);
             font-weight: 600;
+            text-decoration: none;
         }
 
         .right {
@@ -488,6 +503,13 @@ if (!disc) {
             width: 100%;
             min-width: 0;
             accent-color: var(--accent);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: 1rem;
         }
 
         div[class] > p,
