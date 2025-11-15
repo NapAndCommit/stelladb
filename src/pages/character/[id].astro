@@ -462,7 +462,7 @@ if (!char) {
             params.forEach((paramSet, index) => {
                 const splitted = paramSet.toString().split('/');
                 const paramValue = splitted.length === 13 ? splitted[skillLevel - 1] : splitted.length === 9 ? splitted[upgrade2] : splitted[0];
-                result = result.replace(`&Param${index + 1}&`, paramValue);
+                result = result.replaceAll(`&Param${index + 1}&`, paramValue);
             });
 
             result = result
@@ -502,7 +502,7 @@ if (!char) {
                 params.forEach((paramSet, index) => {
                     const splitted = paramSet.toString().split('/');
                     const paramValue = splitted.length === 13 ? splitted[skillLevel2 - 1] : splitted.length === 9 ? splitted[potentialLevel - 1] : splitted[0];
-                    result = result.replace(`&Param${index + 1}&`, paramValue);
+                    result = result.replaceAll(`&Param${index + 1}&`, paramValue);
                 });
 
                 result = result
@@ -534,7 +534,7 @@ if (!char) {
                             param = parseFloat(param) * 2;
                         }
                     }
-                    desc = desc.replace(`&Param${index + 1}&`, param);
+                    desc = desc.replaceAll(`&Param${index + 1}&`, param);
                 });
 
                 desc = desc
