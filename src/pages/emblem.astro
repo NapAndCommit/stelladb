@@ -40,8 +40,17 @@ const data = await fetch(DATA_URL).then((res) => res.json());
                 <p>yes, chance to get pen is rigged</p>
                 <div class="unique-attr-group">
                     <h2>Unique Attributes</h2>
-                    <h3>Weight: {JSON.stringify(data.lv80.uniqueAttrGroup.uniqueAttrNumWeight)}</h3>
-                    <p>whatever the fucc that weight means idk 😭</p>
+                    <h3>Weight:</h3>
+                    <p>
+                        {
+                            Object.entries(data.lv80.uniqueAttrGroup.uniqueAttrNumWeight).map(([num, weight]) => (
+                                <>
+                                    {num}: {weight}
+                                    <br />
+                                </>
+                            ))
+                        }
+                    </p>
                     <br />
                     {data.lv80.uniqueAttrGroup.attr.map((attr) => <p>{attr}</p>)}
                 </div>
@@ -62,8 +71,17 @@ const data = await fetch(DATA_URL).then((res) => res.json());
                 <p>yes, there is no pen here</p>
                 <div class="unique-attr-group">
                     <h2>Unique Attributes</h2>
-                    <h3>Weight: {JSON.stringify(data.lv90.uniqueAttrGroup.uniqueAttrNumWeight)}</h3>
-                    <p>whatever the fucc that weight means idk 😭</p>
+                    <h3>Weight:</h3>
+                    <p>
+                        {
+                            Object.entries(data.lv80.uniqueAttrGroup.uniqueAttrNumWeight).map(([num, weight]) => (
+                                <>
+                                    {num}: {weight}
+                                    <br />
+                                </>
+                            ))
+                        }
+                    </p>
                     <br />
                     {data.lv90.uniqueAttrGroup.attr.map((attr) => <p>{attr}</p>)}
                 </div>
