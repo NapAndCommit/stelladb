@@ -6,15 +6,16 @@ interface Props {
     desc2?: string;
     star?: number;
     image: string;
+    imageFallback?: string;
     inset?: number;
 }
 
-const { href, name, desc, desc2, star, image, inset = 0 } = Astro.props;
+const { href, name, desc, desc2, star, image, imageFallback, inset = 0 } = Astro.props;
 ---
 
 <div class={`card-border ${star ? `star${star}` : ''}`}>
     <a href={href} class="card">
-        <div class=`image` style={`background-image: url(${image}); inset: ${inset}px`} role="img" aria-label={name}></div>
+        <div class=`image` style={`background-image: url(${image})${imageFallback ? `, url(${imageFallback})` : ''}; inset: ${inset}px`} role="img" aria-label={name}></div>
         <div class="text">
             <h2>{name}</h2>
             <p>{desc}</p>
