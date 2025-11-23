@@ -8,9 +8,10 @@ interface Props {
     image: string;
     imageFallback?: string;
     inset?: number;
+    corner?: string;
 }
 
-const { href, name, desc, desc2, star, image, imageFallback, inset = 0 } = Astro.props;
+const { href, name, desc, desc2, star, image, imageFallback, inset = 0, corner } = Astro.props;
 ---
 
 <div class={`card-border ${star ? `star${star}` : ''}`}>
@@ -21,6 +22,7 @@ const { href, name, desc, desc2, star, image, imageFallback, inset = 0 } = Astro
             <p>{desc}</p>
             {desc2 && <p>{desc2}</p>}
         </div>
+        {corner && <img class="corner" src={corner} width="48" height="48" />}
     </a>
 </div>
 
@@ -85,5 +87,11 @@ const { href, name, desc, desc2, star, image, imageFallback, inset = 0 } = Astro
 
     .card p {
         margin: 0.25rem 0 0 0;
+    }
+
+    .corner {
+        position: absolute;
+        top: -5px;
+        left: -5px;
     }
 </style>
