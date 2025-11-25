@@ -70,6 +70,7 @@ const { title, description = 'a lazy stella sora database', image = 'https://ste
         --muted: #bbb;
         --text: #eee;
         --accent: #6f9;
+        --word: #69e;
         --nav-height: 64px;
     }
 
@@ -103,6 +104,17 @@ const { title, description = 'a lazy stella sora database', image = 'https://ste
         font-weight: bold;
     }
 
+    .tooltip.word {
+        color: var(--word);
+    }
+
+    .tooltip [style*='background'] {
+        display: inline-block;
+        vertical-align: middle;
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
     .tooltip-text {
         display: none;
         position: absolute;
@@ -110,6 +122,7 @@ const { title, description = 'a lazy stella sora database', image = 'https://ste
         background: var(--bg2);
         padding: 1rem;
         width: 400px;
+        color: var(--text);
         font-weight: normal;
     }
 
