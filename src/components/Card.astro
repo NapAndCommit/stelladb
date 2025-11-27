@@ -2,16 +2,18 @@
 interface Props {
     href: string;
     name: string;
-    desc: string;
+    desc?: string;
     desc2?: string;
     star?: number;
     image: string;
     imageFallback?: string;
     inset?: number;
     corner?: string;
+    charClass?: string;
+    attackType?: string;
 }
 
-const { href, name, desc, desc2, star, image, imageFallback, inset = 0, corner } = Astro.props;
+const { href, name, desc, desc2, star, image, imageFallback, inset = 0, corner, charClass, attackType } = Astro.props;
 ---
 
 <div class={`card-border ${star ? `star${star}` : ''}`}>
@@ -19,9 +21,19 @@ const { href, name, desc, desc2, star, image, imageFallback, inset = 0, corner }
         <div class=`image` style={`background-image: url(${image})${imageFallback ? `, url(${imageFallback})` : ''}; inset: ${inset}px`}></div>
         <div class="text">
             <h2>{name}</h2>
-            <p>{desc}</p>
+            {desc && <p>{desc}</p>}
             {desc2 && <p>{desc2}</p>}
         </div>
+        {
+            charClass && attackType && (
+                <div class={`char-info ${charClass.toLowerCase()}`}>
+                    <div class="char-class">{charClass}</div>
+                    <div class="attack-type">
+                        <img src={`/${attackType}.png`} width="16" height="16" alt={attackType} />
+                    </div>
+                </div>
+            )
+        }
     </a>
     {corner && <img class="corner" src={corner} width="48" height="48" />}
 </div>
@@ -85,13 +97,44 @@ const { href, name, desc, desc2, star, image, imageFallback, inset = 0, corner }
         padding: 0.5rem;
     }
 
+    .char-info {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        align-items: center;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 7% 100%);
+    }
+
+    .vanguard {
+        background: #d69;
+    }
+
+    .versatile {
+        background: #78e;
+    }
+
+    .support {
+        background: #4ca;
+    }
+    .char-info .char-class {
+        padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+    }
+
+    .char-info .attack-type {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
+        background: #36a;
+        padding: 0.35rem 0.25rem 0.15rem 0.5rem;
+    }
+
     .card h2 {
         margin: 0;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
 
     .card p {
         margin: 0.25rem 0 0 0;
+        font-size: 0.8rem;
     }
 
     .corner {

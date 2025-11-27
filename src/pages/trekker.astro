@@ -42,12 +42,13 @@ const emoji = {
                     <Card
                         href={`/trekker/${id}`}
                         name={char.name}
-                        desc={`${char.star}⭐ ${char.element}${emoji[char.element]} ${char.class}${emoji[char.attackType]}`}
                         star={char.star}
                         image={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/head/head_${id}02_XL.png`}
                         imageFallback={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/head/head_${id}01_XL.png`}
                         inset={-12}
                         corner={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN//stelladb/refs/heads/main/public/${char.element}.png`}
+                        charClass={char.class}
+                        attackType={char.attackType}
                     />
                 </div>
             ))

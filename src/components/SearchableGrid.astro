@@ -2,9 +2,10 @@
 interface Props {
     placeholder?: string;
     noResultsText?: string;
+    cardWidth?: number;
 }
 
-const { placeholder = 'Search...', noResultsText = 'No results found.' } = Astro.props as Props;
+const { placeholder = 'Search...', noResultsText = 'No results found.', cardWidth = 160 } = Astro.props as Props;
 ---
 
 <div class="searchable-grid">
@@ -13,7 +14,7 @@ const { placeholder = 'Search...', noResultsText = 'No results found.' } = Astro
         <input id="search" type="search" placeholder={placeholder} autofocus />
     </div>
 
-    <div class="grid">
+    <div class="grid" style={`grid-template-columns: repeat(auto-fill, minmax(${cardWidth}px, 1fr));`}>
         <slot />
     </div>
 
@@ -66,13 +67,13 @@ const { placeholder = 'Search...', noResultsText = 'No results found.' } = Astro
 
     input[type='search'] {
         flex: 1 1 auto;
-        padding: 0.75rem;
-        border-radius: 6px;
         border: var(--text) 3px solid;
-        font-size: 1.25rem;
+        border-radius: 6px;
         background: var(--bg1);
-        accent-color: var(--accent);
+        padding: 0.75rem;
         color: var(--text);
+        accent-color: var(--accent);
+        font-size: 1.25rem;
     }
 
     input[type='search']:focus {
@@ -87,27 +88,26 @@ const { placeholder = 'Search...', noResultsText = 'No results found.' } = Astro
 
     .visually-hidden {
         position: absolute !important;
-        height: 1px;
         width: 1px;
+        height: 1px;
         overflow: hidden;
         clip: rect(1px, 1px, 1px, 1px);
-        white-space: nowrap;
+        margin: -1px;
         border: 0;
         padding: 0;
-        margin: -1px;
+        white-space: nowrap;
     }
 
     .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 1rem;
         margin-top: 1rem;
     }
 
     .no-results {
         margin-top: 2rem;
+        color: var(--text);
         font-size: 2rem;
         text-align: center;
-        color: var(--text);
     }
 </style>
