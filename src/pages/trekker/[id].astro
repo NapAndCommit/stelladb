@@ -143,6 +143,19 @@ if (!char) {
                         {!char.normalAtk.damageType.length ? null : <p>Damage type: {char.normalAtk.damageType.join(', ')}</p>}
                         {!char.normalAtk.effectType.length ? null : <p>Effect type: {char.normalAtk.effectType.join(', ')}</p>}
                         {!char.normalAtk.addAttrType.length ? null : <p>Additional attribute type: {char.normalAtk.addAttrType.join(', ')}</p>}
+                        {
+                            !char.normalAtk.effectData.length ? null : (
+                                <p>
+                                    Effect data:{' '}
+                                    {char.normalAtk.effectData.map((data) => (
+                                        <>
+                                            {data}
+                                            <br />
+                                        </>
+                                    ))}
+                                </p>
+                            )
+                        }
                     </div>
 
                     <div class="skill">
@@ -155,6 +168,19 @@ if (!char) {
                         {!char.skill.damageType.length ? null : <p>Damage type: {char.skill.damageType.join(', ')}</p>}
                         {!char.skill.effectType.length ? null : <p>Effect type: {char.skill.effectType.join(', ')}</p>}
                         {!char.skill.addAttrType.length ? null : <p>Additional attribute type: {char.skill.addAttrType.join(', ')}</p>}
+                        {
+                            !char.skill.effectData.length ? null : (
+                                <p>
+                                    Effect data:{' '}
+                                    {char.skill.effectData.map((data) => (
+                                        <>
+                                            {data}
+                                            <br />
+                                        </>
+                                    ))}
+                                </p>
+                            )
+                        }
                     </div>
 
                     <div class="support-skill">
@@ -167,6 +193,19 @@ if (!char) {
                         {!char.supportSkill.damageType.length ? null : <p>Damage type: {char.supportSkill.damageType.join(', ')}</p>}
                         {!char.supportSkill.effectType.length ? null : <p>Effect type: {char.supportSkill.effectType.join(', ')}</p>}
                         {!char.supportSkill.addAttrType.length ? null : <p>Additional attribute type: {char.supportSkill.addAttrType.join(', ')}</p>}
+                        {
+                            !char.supportSkill.effectData.length ? null : (
+                                <p>
+                                    Effect data:{' '}
+                                    {char.supportSkill.effectData.map((data) => (
+                                        <>
+                                            {data}
+                                            <br />
+                                        </>
+                                    ))}
+                                </p>
+                            )
+                        }
                     </div>
 
                     <div class="ultimate">
@@ -180,6 +219,19 @@ if (!char) {
                         {!char.ultimate.damageType.length ? null : <p>Damage type: {char.ultimate.damageType.join(', ')}</p>}
                         {!char.ultimate.effectType.length ? null : <p>Effect type: {char.ultimate.effectType.join(', ')}</p>}
                         {!char.ultimate.addAttrType.length ? null : <p>Additional attribute type: {char.ultimate.addAttrType.join(', ')}</p>}
+                        {
+                            !char.ultimate.effectData.length ? null : (
+                                <p>
+                                    Effect data:{' '}
+                                    {char.ultimate.effectData.map((data) => (
+                                        <>
+                                            {data}
+                                            <br />
+                                        </>
+                                    ))}
+                                </p>
+                            )
+                        }
                     </div>
 
                     {
@@ -236,6 +288,17 @@ if (!char) {
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
                                     {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                     {!pot.addAttrType.length ? null : <p>Additional attribute type: {pot.addAttrType.join(', ')}</p>}
+                                    {!pot.effectData.length ? null : (
+                                        <p>
+                                            Effect data:{' '}
+                                            {pot.effectData.map((data) => (
+                                                <>
+                                                    {data}
+                                                    <br />
+                                                </>
+                                            ))}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         ))
@@ -265,6 +328,17 @@ if (!char) {
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
                                     {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                     {!pot.addAttrType.length ? null : <p>Additional attribute type: {pot.addAttrType.join(', ')}</p>}
+                                    {!pot.effectData.length ? null : (
+                                        <p>
+                                            Effect data:{' '}
+                                            {pot.effectData.map((data) => (
+                                                <>
+                                                    {data}
+                                                    <br />
+                                                </>
+                                            ))}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         ))
@@ -294,6 +368,17 @@ if (!char) {
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
                                     {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                     {!pot.addAttrType.length ? null : <p>Additional attribute type: {pot.addAttrType.join(', ')}</p>}
+                                    {!pot.effectData.length ? null : (
+                                        <p>
+                                            Effect data:{' '}
+                                            {pot.effectData.map((data) => (
+                                                <>
+                                                    {data}
+                                                    <br />
+                                                </>
+                                            ))}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         ))
@@ -311,6 +396,17 @@ if (!char) {
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
                                     {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                     {!pot.addAttrType.length ? null : <p>Additional attribute type: {pot.addAttrType.join(', ')}</p>}
+                                    {!pot.effectData.length ? null : (
+                                        <p>
+                                            Effect data:{' '}
+                                            {pot.effectData.map((data) => (
+                                                <>
+                                                    {data}
+                                                    <br />
+                                                </>
+                                            ))}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         ))
@@ -340,6 +436,17 @@ if (!char) {
                                     {!pot.damageType.length ? null : <p>Damage type: {pot.damageType.join(', ')}</p>}
                                     {!pot.effectType.length ? null : <p>Effect type: {pot.effectType.join(', ')}</p>}
                                     {!pot.addAttrType.length ? null : <p>Additional attribute type: {pot.addAttrType.join(', ')}</p>}
+                                    {!pot.effectData.length ? null : (
+                                        <p>
+                                            Effect data:{' '}
+                                            {pot.effectData.map((data) => (
+                                                <>
+                                                    {data}
+                                                    <br />
+                                                </>
+                                            ))}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         ))
@@ -361,6 +468,18 @@ if (!char) {
                                         );
                                     })}
                                 </p>
+                                {!talent.boost[0].effectType.length ? null : <p>Effect type: {talent.boost[0].effectType.join(', ')}</p>}
+                                {!talent.boost[0].effectData.length ? null : (
+                                    <p>
+                                        Effect data:{' '}
+                                        {talent.boost[0].effectData.map((data) => (
+                                            <>
+                                                {data}
+                                                <br />
+                                            </>
+                                        ))}
+                                    </p>
+                                )}
                             </div>
                         ))
                     }

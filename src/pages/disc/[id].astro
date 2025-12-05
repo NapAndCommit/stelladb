@@ -144,6 +144,19 @@ if (!disc) {
                         </div>
                         <p>{disc.mainSkill.description}</p>
                         {!disc.mainSkill.effectType.length ? null : <p>Effect type: {disc.mainSkill.effectType.join(', ')}</p>}
+                        {
+                            !disc.mainSkill.effectData.length ? null : (
+                                <p>
+                                    Effect data:{' '}
+                                    {disc.mainSkill.effectData.map((data) => (
+                                        <>
+                                            {data}
+                                            <br />
+                                        </>
+                                    ))}
+                                </p>
+                            )
+                        }
                     </div>
                 </section>
 
@@ -166,6 +179,17 @@ if (!disc) {
                                 </div>
                                 <p>{disc.secondarySkill1.description}</p>
                                 {!disc.secondarySkill1.effectType.length ? null : <p>Effect type: {disc.secondarySkill1.effectType.join(', ')}</p>}
+                                {!disc.secondarySkill1.effectData.length ? null : (
+                                    <p>
+                                        Effect data:{' '}
+                                        {disc.secondarySkill1.effectData.map((data) => (
+                                            <>
+                                                {data}
+                                                <br />
+                                            </>
+                                        ))}
+                                    </p>
+                                )}
                                 <div class="item-image" />
                                 <p class="requirements">
                                     {Object.entries(disc.secondarySkill1.requirements[0]).map(([note, amount]) => (
@@ -187,6 +211,17 @@ if (!disc) {
                                     </div>
                                     <p>{disc.secondarySkill2.description}</p>
                                     {!disc.secondarySkill2.effectType.length ? null : <p>Effect type: {disc.secondarySkill2.effectType.join(', ')}</p>}
+                                    {!disc.secondarySkill2.effectData.length ? null : (
+                                        <p>
+                                            Effect data:{' '}
+                                            {disc.secondarySkill2.effectData.map((data) => (
+                                                <>
+                                                    {data}
+                                                    <br />
+                                                </>
+                                            ))}
+                                        </p>
+                                    )}
                                     <div class="item-image" />
                                     <p class="requirements">
                                         {Object.entries(disc.secondarySkill2.requirements[0]).map(([note, amount]) => (
