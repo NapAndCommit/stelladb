@@ -20,7 +20,7 @@ const { params, request } = Astro;
 const id = params.id;
 
 const data = await fetch(DATA_URL).then((res) => res.json());
-const itemId = await fetch(ITEM_URL).then((res) => res.json());
+const itemData = await fetch(ITEM_URL).then((res) => res.json());
 const word = await fetch(WORD_URL).then((res) => res.json());
 const char = data[id];
 
@@ -43,7 +43,7 @@ if (!char) {
 ---
 
 <Layout title={`${char.name} | stelladb`} image={`https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/head/head_${id}02_XL.png`} description={`${char.star}⭐ ${char.element}${emoji[char.element]} ${char.class}${emoji[char.attackType]} ${char.tag.join(' ')}`}>
-    <div class="character-page" data-json={JSON.stringify(char)} data-item={JSON.stringify(itemId)} data-word={JSON.stringify(word)}>
+    <div class="character-page" data-json={JSON.stringify(char)} data-item={JSON.stringify(itemData)} data-word={JSON.stringify(word)}>
         <div class="header">
             <h1>{char.name}</h1>
 
@@ -542,7 +542,7 @@ if (!char) {
     <script>
         // @ts-nocheck
         const char = JSON.parse(document.querySelector('.character-page').dataset.json);
-        const itemId = JSON.parse(document.querySelector('.character-page').dataset.item);
+        const itemData = JSON.parse(document.querySelector('.character-page').dataset.item);
         const word = JSON.parse(document.querySelector('.character-page').dataset.word);
 
         function format(desc) {
@@ -567,6 +567,16 @@ if (!char) {
                         </div>
                     </span>`;
                 });
+        }
+
+        function itemNameToImage(itemName) {
+            const item = Object.values(itemData).find((i) => i.name === itemName);
+            const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${item.id}.png`;
+            return `
+                <div style="background: url('https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/stelladb/refs/heads/main/public/${item.rarity}.png') center/cover no-repeat;">
+                    <img src="${imageUrl}" alt="${itemName}" title="${itemName}" width="64" height="64" />
+                </div>
+            `;
         }
 
         const upgrade1Input = document.querySelector('#upgrade1');
@@ -623,18 +633,13 @@ if (!char) {
 
             upgradeCost.innerHTML = sorted.map(([item, amount]) => `${item}: ${amount.toLocaleString()}<br />`).join('');
             if (+upgrade1Input.value > 7) upgradeCost.innerHTML = 'Max upgrade reached<br />' + upgradeCost.innerHTML;
-            upgradeCostItemImage.innerHTML = sorted
-                .map(([item]) => {
-                    const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[item]}.png`;
-                    return `<img src="${imageUrl}" alt="${item}" title="${item}" width="64" height="64" />`;
-                })
-                .join('');
+            upgradeCostItemImage.innerHTML = sorted.map(([itemName]) => itemNameToImage(itemName)).join('');
         }
 
         function sortByItemId(totals) {
             return Object.entries(totals).sort((a, b) => {
-                const ida = itemId[a[0]];
-                const idb = itemId[b[0]];
+                const ida = itemData[a[0]];
+                const idb = itemData[b[0]];
                 if (ida === 1) return 1;
                 if (idb === 1) return -1;
                 return ida - idb;
@@ -693,12 +698,7 @@ if (!char) {
 
             skillUpgradeCost.innerHTML = sorted.map(([item, amount]) => `${item}: ${amount.toLocaleString()}<br />`).join('');
             if (+skillLevel1Input.value > 9) skillUpgradeCost.innerHTML = 'Max upgrade reached<br />' + skillUpgradeCost.innerHTML;
-            skillUpgradeItemImage.innerHTML = sorted
-                .map(([item]) => {
-                    const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[item]}.png`;
-                    return `<img src="${imageUrl}" alt="${item}" title="${item}" width="64" height="64" />`;
-                })
-                .join('');
+            skillUpgradeItemImage.innerHTML = sorted.map(([itemName]) => itemNameToImage(itemName)).join('');
         }
 
         function replaceSkillParams(desc, params, upgrade, level) {
@@ -779,18 +779,8 @@ if (!char) {
         const loveGiftItemImage = document.querySelector('.love-gift .item-image');
         const hateGiftItemImage = document.querySelector('.hate-gift .item-image');
 
-        loveGiftItemImage.innerHTML = `${char.loveGift
-            .map((gift) => {
-                const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[gift]}.png`;
-                return `<img src="${imageUrl}" alt="${gift}" title="${gift}" width="64" height="64" />`;
-            })
-            .join('')}`;
-        hateGiftItemImage.innerHTML = `${char.hateGift
-            .map((gift) => {
-                const imageUrl = `https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/item/item_${itemId[gift]}.png`;
-                return `<img src="${imageUrl}" alt="${gift}" title="${gift}" width="64" height="64" />`;
-            })
-            .join('')}`;
+        loveGiftItemImage.innerHTML = `${char.loveGift.map((gift) => itemNameToImage(gift)).join('')}`;
+        hateGiftItemImage.innerHTML = `${char.hateGift.map((gift) => itemNameToImage(gift)).join('')}`;
 
         const dateItemImages = document.querySelectorAll('.date .item-image');
         dateItemImages.forEach((e, i) => {
