@@ -35,7 +35,7 @@ if (!blitz) {
 }
 ---
 
-<Layout title={`${blitz.name} | stelladb`} image={`https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/mapchallenge/${blitz.icon}.png`} description={`Weak: ${blitz.weakTo.map((e) => e + emoji[e]).join(', ')}, Resist: ${blitz.resistTo}${emoji[blitz.resistTo]}, HP: ${blitz.stat.HP.toLocaleString()}`}>
+<Layout title={`${blitz.name} | stelladb`} image={`https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/mapchallenge/${blitz.icon}.png`} description={`Weak: ${blitz.weakTo.map((e) => e + emoji[e]).join(', ')}, Resist: ${blitz.resistTo}${emoji[blitz.resistTo]}`}>
     <div class="blitz-page" data-json={JSON.stringify(blitz)}>
         <div class="header">
             <h1>{blitz.name}</h1>
@@ -57,11 +57,18 @@ if (!blitz) {
 
             <div class="right">
                 <section id="stats" class="tab-panel">
+                    <div class="slider-container">
+                        <div class="slider level">
+                            <label class="level-output">Level: 1</label>
+                            <input type="range" id="level" min="1" max={blitz.stat.length} value="45" />
+                        </div>
+                    </div>
+
                     <div class="stats">
                         <h2>Stats</h2>
                         <p>
                             {
-                                Object.entries(blitz.stat).map(([stat, value]) => (
+                                Object.entries(blitz.stat[0]).map(([stat, value]) => (
                                     <>
                                         {stat}: {value.toLocaleString()}
                                         <br />
@@ -91,6 +98,26 @@ if (!blitz) {
 
     <script>
         // @ts-nocheck
+        const blitz = JSON.parse(document.querySelector('.blitz-page').dataset.json);
+
+        const levelInput = document.querySelector('#level');
+        const levelOutput = document.querySelector('.level-output');
+        const stats = document.querySelector('.stats p');
+
+        let level = 1;
+
+        levelInput.addEventListener('input', onLevelInput);
+        onLevelInput();
+
+        function onLevelInput() {
+            level = +levelInput.value;
+            levelOutput.textContent = `Level: ${level}`;
+
+            stats.innerHTML = `${Object.entries(blitz.stat[level - 1])
+                .map(([stat, value]) => `${stat}: ${value.toLocaleString()}<br />`)
+                .join('')}`;
+        }
+
         const mechanicDesc = document.querySelectorAll('.mechanic p');
         mechanicDesc.forEach((desc) => {
             desc.innerHTML = desc.textContent.replace(/<color=#(.{6})>/g, '<color style="color:#$1">').replace(/\u000b/g, '<br />');
