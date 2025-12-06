@@ -41,8 +41,8 @@ if (!ground) {
             <h1>{ground.name}</h1>
 
             <Tabs>
-                <button data-tab="mechanic" class="tab active">Mechanic</button>
-                <button data-tab="stats" class="tab">Stats</button>
+                <button data-tab="stats" class="tab active">Stats</button>
+                <button data-tab="mechanic" class="tab">Mechanic</button>
             </Tabs>
         </div>
 
@@ -56,21 +56,7 @@ if (!ground) {
             </div>
 
             <div class="right">
-                <section id="mechanic" class="tab-panel">
-                    {
-                        ground.mechanic.map((mechanic) => (
-                            <div class="mechanic">
-                                <div class="mechanic-header">
-                                    <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/monsterskill/regionaffix/${mechanic.icon}.png`} alt={mechanic.name} title={mechanic.name} width="64" height="64" />
-                                    <h3>{mechanic.name}</h3>
-                                </div>
-                                <p>{mechanic.desc}</p>
-                            </div>
-                        ))
-                    }
-                </section>
-
-                <section id="stats" class="tab-panel" hidden>
+                <section id="stats" class="tab-panel">
                     <div class="slider-container">
                         <div class="slider difficulty">
                             <label class="difficulty-output">Difficulty: {ground.diff.length}</label>
@@ -91,6 +77,20 @@ if (!ground) {
                             }
                         </p>
                     </div>
+                </section>
+
+                <section id="mechanic" class="tab-panel" hidden>
+                    {
+                        ground.mechanic.map((mechanic) => (
+                            <div class="mechanic">
+                                <div class="mechanic-header">
+                                    <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/monsterskill/regionaffix/${mechanic.icon}.png`} alt={mechanic.name} title={mechanic.name} width="64" height="64" />
+                                    <h3>{mechanic.name}</h3>
+                                </div>
+                                <p>{mechanic.desc}</p>
+                            </div>
+                        ))
+                    }
                 </section>
             </div>
         </div>
