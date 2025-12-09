@@ -49,10 +49,12 @@ if (!raid) {
         <div class="content">
             <div class="left">
                 <img src={`https://chino.is-a.dev/cdn-cgi/image/format=avif/https://raw.githubusercontent.com/AutumnVN/ssassets/refs/heads/main/export/Assets/assetbundles/icon/monster/${raid.icon}.png`} alt={raid.name} title={raid.name} width="256" height="256" />
-                <p>
-                    {`Weak: ${raid.weakTo.map((e) => e + emoji[e]).join(', ')}`}<br />
-                    {`Resist: ${raid.resistTo}${emoji[raid.resistTo]}`}<br />
-                </p>
+                <div class="info">
+                    <p>
+                        {`Weak: ${raid.weakTo.map((e) => e + emoji[e]).join(', ')}`}<br />
+                        {`Resist: ${raid.resistTo}${emoji[raid.resistTo]}`}<br />
+                    </p>
+                </div>
             </div>
 
             <div class="right">
@@ -147,6 +149,17 @@ if (!raid) {
 
         .left {
             width: 256px;
+        }
+
+        @media (width < 800px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .left {
+                width: 100%;
+                display: flex;
+            }
         }
 
         .right {
