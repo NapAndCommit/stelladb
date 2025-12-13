@@ -145,10 +145,10 @@ if (!disc) {
                             <h2>{disc.mainSkill.name}</h2>
                         </div>
                         <p>{disc.mainSkill.description}</p>
-                        {!disc.mainSkill.effectType.length ? null : <p>Effect type: {disc.mainSkill.effectType.join(', ')}</p>}
+                        {!disc.mainSkill.effectType.length ? null : <p class="small">Effect: {disc.mainSkill.effectType.join(', ')}</p>}
                         {
                             !disc.mainSkill.effectData.length ? null : (
-                                <p>
+                                <p class="small">
                                     Effect data:{' '}
                                     {disc.mainSkill.effectData.map((data) => (
                                         <>
@@ -180,9 +180,9 @@ if (!disc) {
                                     <h2>{disc.secondarySkill1.name}</h2>
                                 </div>
                                 <p>{disc.secondarySkill1.description}</p>
-                                {!disc.secondarySkill1.effectType.length ? null : <p>Effect type: {disc.secondarySkill1.effectType.join(', ')}</p>}
+                                {!disc.secondarySkill1.effectType.length ? null : <p class="small">Effect: {disc.secondarySkill1.effectType.join(', ')}</p>}
                                 {!disc.secondarySkill1.effectData.length ? null : (
-                                    <p>
+                                    <p class="small">
                                         Effect data:{' '}
                                         {disc.secondarySkill1.effectData.map((data) => (
                                             <>
@@ -212,9 +212,9 @@ if (!disc) {
                                         <h2>{disc.secondarySkill2.name}</h2>
                                     </div>
                                     <p>{disc.secondarySkill2.description}</p>
-                                    {!disc.secondarySkill2.effectType.length ? null : <p>Effect type: {disc.secondarySkill2.effectType.join(', ')}</p>}
+                                    {!disc.secondarySkill2.effectType.length ? null : <p class="small">Effect: {disc.secondarySkill2.effectType.join(', ')}</p>}
                                     {!disc.secondarySkill2.effectData.length ? null : (
-                                        <p>
+                                        <p class="small">
                                             Effect data:{' '}
                                             {disc.secondarySkill2.effectData.map((data) => (
                                                 <>
@@ -622,6 +622,12 @@ if (!disc) {
         div[class] > p,
         div[class] > .item-image {
             margin-left: 1rem;
+        }
+
+        .small {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.9rem;
         }
 
         h2 {
