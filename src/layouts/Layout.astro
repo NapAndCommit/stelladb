@@ -55,6 +55,10 @@ const { title, description = 'a lazy stella sora database', image = 'https://ste
         <main>
             <slot />
         </main>
+
+        <footer>
+            <p>read if cute • <a href="https://github.com/AutumnVN/stelladb">source code</a></p>
+        </footer>
     </body>
 </html>
 
@@ -244,5 +248,14 @@ const { title, description = 'a lazy stella sora database', image = 'https://ste
         margin: auto;
         padding: 0 1rem;
         max-width: 1000px;
+        min-height: calc(100dvh - 2 * var(--nav-height));
+    }
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--muted);
+        height: var(--nav-height);
     }
 </style>

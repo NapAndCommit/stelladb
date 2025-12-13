@@ -7,10 +7,6 @@ import Layout from '../layouts/Layout.astro';
         <h1>404</h1>
         <p>not found</p>
     </div>
-
-    <footer>
-        <p>read if cute • <a href="https://github.com/AutumnVN/stelladb">source code</a></p>
-    </footer>
 </Layout>
 
 <style>
@@ -19,7 +15,6 @@ import Layout from '../layouts/Layout.astro';
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: calc(100vh - 2 * var(--nav-height));
     }
 
     .center h1 {
@@ -30,13 +25,5 @@ import Layout from '../layouts/Layout.astro';
     .center p {
         margin: 0.5rem;
         font-size: 1.5rem;
-    }
-
-    footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: var(--nav-height);
-        color: var(--muted);
     }
 </style>
